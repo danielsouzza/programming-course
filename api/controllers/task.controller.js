@@ -89,7 +89,6 @@ async function store(req, res) {
         return res.status(400).json({ error: 'Título é obrigatório' });
     }
 
-    // Validação básica se o usuário existe, se tivermos o ID
     if (userId) {
         try {
             const db = await getDb();
