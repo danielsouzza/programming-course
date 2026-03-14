@@ -8,7 +8,6 @@ class User {
         this.password = password;
     }
 
-    // Função direto no model para buscar as tarefas deste usuário
     async getTasks() {
         const db = await getDb();
         const tasks = await db.all('SELECT * FROM tasks WHERE userId = ?', [this.id]);
