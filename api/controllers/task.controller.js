@@ -1,35 +1,44 @@
 const { getDb } = require("../database");
 
 async function index(req, res) {
-    const { date, date_start, date_end, sorted, userId } = req.query;
+    const { date, date_start, date_end, sorted, userId, done, numberOf } = req.query;
 
     try {
         const db = await getDb();
-        let query = 'SELECT * FROM tasks WHERE 1=1';
+        let query = 'SELECT * FROM tasks where 1=1 ';
         let params = [];
 
         if (userId) {
-            query += ' AND userId = ?';
+            query += 'and userId = ?'
             params.push(userId);
         }
 
         if (date) {
-            query += ' AND date = ?';
+            query += 'and date = ?'
             params.push(date);
         }
 
         if (date_start && date_end) {
-            query += ' AND date >= ? AND date <= ?';
+            query += 'and date >= ? and date <= ?'
             params.push(date_start, date_end);
         }
 
-        if (sorted === 'desc') {
-            query += ' ORDER BY date DESC';
-        } else if (sorted === 'asc') {
-            query += ' ORDER BY date ASC';
+        if (done != undefined) {
+            query += 'and done = ?'
+            params.push(done);
         }
 
-        const tasksFiltered = await db.all(query, params);
+        if (sorted == 'asc') {
+            query += 'order by date asc';
+        } else if (sorted == 'desc') {
+            query += 'order by date desc';
+        }
+
+
+        let tasksFiltered = await db.all(query, params);
+        if (numberOf != undefined && numberOf != 0) {
+            tasksFiltered = tasksFiltered.length
+        }
         res.json({ date: date, data: tasksFiltered });
 
     } catch (error) {
@@ -55,7 +64,7 @@ async function update(req, res) {
 
         if (done !== undefined) {
             updates.push('done = ?');
-            params.push(done ? 1 : 0); // Boolean virando integer para o SQLite
+            params.push(done ? 1 : 0);
         }
         if (title) {
             updates.push('title = ?');

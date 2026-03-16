@@ -8,10 +8,10 @@ class User {
         this.password = password;
     }
 
-    async getTasks() {
-        const db = await getDb();
-        const tasks = await db.all('SELECT * FROM tasks WHERE userId = ?', [this.id]);
-        return tasks;
+    async tasks() {
+        const db = await getDb()
+        const tasks = await db.all('SELECT * FROM tasks WHERE userId = ?', [this.id])
+        return tasks
     }
 }
 
