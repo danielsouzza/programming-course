@@ -1,0 +1,23 @@
+body {
+    background-color: #cff7f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.content-login {
+    display: flex;
+    flex-direction: column;
+}
+
+.content-login form,
+.content-cadastro {
+    display: flex;
+    flex-direction: column;
+}
+
+.content-cadastro {
+    display: none
+}
