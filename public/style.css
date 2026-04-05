@@ -1,5 +1,6 @@
 body {
-    background-color: #cff7f2;
+    font-family: 'Poppins', sans-serif;
+    background-color: #1F1F1F;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,9 +8,109 @@ body {
 
 }
 
-.content-login {
+.content-left {
     display: flex;
     flex-direction: column;
+    gap: 1px;
+}
+
+.content-left p {
+    font-weight: 200;
+}
+
+.content-left div {
+    font-size: 48px;
+    font-weight: 700;
+}
+
+.content-right {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-right form {
+    border-radius: 24px;
+    padding: 159px;
+    width: 100%;
+    gap: 8px;
+    min-width: fit-content;
+    min-height: fit-content;
+    color: black;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.content-right form .text-logi {
+    font-size: 32px;
+    font-weight: 500;
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+
+.btn {
+    display: flex;
+    align-items: center;
+    gap: 24px
+}
+
+.btn button {
+    font-size: 22px;
+    height: 64px;
+    border-style: none;
+    border-color: none;
+    width: 164px;
+    color: white;
+    background-color: #c3c3c3;
+    border-radius: 40px;
+}
+
+.btn .btn-desc {
+    font-size: 16px;
+    display: flex;
+    flex-wrap: nowrap;
+    color: #333333;
+}
+
+.btn .btn-desc span {
+    color: #111111;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.input label {
+    color: #666666;
+}
+
+.input input {
+    border-radius: 12px;
+    height: 45px;
+    width: 100%;
+    border-width: 1.5px;
+    border-style: solid;
+
+    border-color: #666666 !important;
+    opacity: 36%;
+}
+
+.content-left p {
+    max-width: 534px;
+    font-size: 32px;
+}
+
+
+.content-login {
+    display: flex;
+    margin: 100px;
+    color: white;
 }
 
 .content-login form,
@@ -17,6 +118,7 @@ body {
     display: flex;
     flex-direction: column;
 }
+
 
 .content-cadastro {
     display: none
