@@ -1,7 +1,25 @@
-const formCadastro = document.getElementById('form-cadastro')
+const formCadastro = document.getElementById('content-tasks')
 const formLogin = document.getElementById('form-login')
 const linkCriar = document.getElementById('link-criar-conta')
 const linkLogin = document.getElementById('link-login')
+
+
+
+
+function initPage() {
+    const auth = localStorage.getItem('auth')
+
+    console.log(auth)
+
+    if (auth) {
+        const contentLogin = document.getElementById('content-login')
+        const pageTasks = document.getElementById('content-tasks')
+        contentLogin.style.display = 'none'
+        pageTasks.style.display = 'flex'
+    }
+
+
+}
 
 formCadastro.addEventListener('submit', (e) => {
     e.preventDefault()
@@ -62,6 +80,7 @@ formLogin.addEventListener('submit', (e) => {
         return response.json()
     }).then(dados => {
         alert('Seja bem-vindo, ' + dados.user.name)
+        localStorage.setItem('auth', dados.id)
         formLogin.reset()
     }).catch(erro => {
         console.error(erro)
@@ -87,3 +106,5 @@ linkLogin.addEventListener('click', (e) => {
     contentCreate.style.display = 'none'
     contentLogin.style.display = 'flex'
 })
+
+initPage()
