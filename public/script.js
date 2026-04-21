@@ -9,16 +9,12 @@ const linkLogin = document.getElementById('link-login')
 function initPage() {
     const auth = localStorage.getItem('auth')
 
-    console.log(auth)
-
     if (auth) {
         const contentLogin = document.getElementById('content-login')
         const pageTasks = document.getElementById('content-tasks')
         contentLogin.style.display = 'none'
         pageTasks.style.display = 'flex'
     }
-
-
 }
 
 formCadastro.addEventListener('submit', (e) => {
@@ -82,6 +78,7 @@ formLogin.addEventListener('submit', (e) => {
         alert('Seja bem-vindo, ' + dados.user.name)
         localStorage.setItem('auth', dados.id)
         formLogin.reset()
+        initPage()
     }).catch(erro => {
         console.error(erro)
     })

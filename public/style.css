@@ -151,6 +151,49 @@ body>div {
     color: #ffffff;
 }
 
+.header-tasks {
+    display: flex;
+    width: 100%;
+    padding: var(--space-sm);
+    border-radius: 8px;
+    justify-content: space-between;
+    background-color: #ffffff;
+}
+
+.form-modal-content {
+    background-color: #ffffff;
+    padding: var(--space-sm);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm)
+}
+
+.form-inputs {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-content {
+    position: fixed;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+
+}
+
+.modal-create-tasks {
+    position: absolute;
+    z-index: 9999;
+    width: 100vw;
+    height: 100vh;
+    margin: auto;
+}
+
 .content-left p {
     max-width: 534px;
     font-size: 32px;

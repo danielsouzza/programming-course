@@ -32,7 +32,6 @@
         </section>
 
 
-
         <!--Login-->
         <section class="content-login" id="content-login">
             <div class="content-left">
@@ -62,9 +61,32 @@
 
         <!-- My Tasks -->
         <section id="content-tasks">
-            Minhas tarefas
+            <div class="header-tasks">
+                <div>Minhas tarefas</div>
+                <div>
+                    <button>Nova tarefa</button>
+                </div>
+            </div>
         </section>
     </div>
+
+    <section id="modal-create-tasks">
+        <div class="modal-content">
+            <form class="form-modal-content">
+                <div>Nova Tarefa</div>
+                <div class="form-inputs">
+                    <label>Titulo</label>
+                    <input id="input-task-titulo" />
+                    <label>Date</label>
+                    <input id="input-task-data" type="date" />
+                </div>
+                <button type="submit">Criar</button>
+            </form>
+        </div>
+    </section>
+
+
+
     <script src="script.js"></script>
 </body>
 
