@@ -60,20 +60,32 @@
         </section>
 
         <!-- My Tasks -->
-        <section id="content-tasks">
+        <section id="content-tasks" class="content-tasks">
             <div class="header-tasks">
                 <div>Minhas tarefas</div>
                 <div>
-                    <button>Nova tarefa</button>
+                    <button id="btn-nova-tarefa">Nova tarefa</button>
                 </div>
+            </div>
+            <div id="list-my-task" class="list-my-task">
+                <!-- <div class="task-item">
+                    <div class="task-title">
+                        <input type="checkbox" />
+                        <div>Teste</div>
+                    </div>
+                    <div>Data: </div>
+                </div> -->
             </div>
         </section>
     </div>
 
     <section id="modal-create-tasks">
-        <div class="modal-content">
-            <form class="form-modal-content">
-                <div>Nova Tarefa</div>
+        <div class="modal-content" id="modal-task">
+            <form class="form-modal-content" id="form-create-task">
+                <div class="header-form-task">
+                    <div>Nova Tarefa</div>
+                    <button type="button" id="btn-fechar-modal">x</button>
+                </div>
                 <div class="form-inputs">
                     <label>Titulo</label>
                     <input id="input-task-titulo" />

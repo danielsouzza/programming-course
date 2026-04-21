@@ -1,7 +1,12 @@
-const formCadastro = document.getElementById('content-tasks')
+const formCadastro = document.getElementById('content-cadastro')
 const formLogin = document.getElementById('form-login')
 const linkCriar = document.getElementById('link-criar-conta')
 const linkLogin = document.getElementById('link-login')
+const btnNovaTarefa = document.getElementById('btn-nova-tarefa')
+const btnFecharModal = document.getElementById('btn-fechar-modal')
+const modal = document.getElementById('modal-task')
+const formCreateTask = document.getElementById('form-create-task')
+const contentTasks = document.getElementById('list-my-task')
 
 
 
@@ -14,8 +19,86 @@ function initPage() {
         const pageTasks = document.getElementById('content-tasks')
         contentLogin.style.display = 'none'
         pageTasks.style.display = 'flex'
+        getTasksByUser()
     }
 }
+
+btnNovaTarefa.addEventListener('click', (e) => {
+    e.preventDefault()
+    modal.style.display = 'flex'
+
+})
+
+btnFecharModal.addEventListener('click', (e) => {
+    e.preventDefault()
+    modal.style.display = 'none'
+
+})
+
+function renderTask(task) {
+
+
+    const taskTemplate = document.createElement('div')
+
+    taskTemplate.innerHTML = `
+        <div class="task-item">
+            <div class="task-title" id="${task.id}">
+                <input type="text" style="display:none" value="${task.id}"/>
+                <input type="checkbox" value="${task.done}"/>
+                <div>${task.title}</div>
+            </div>
+            <div>Data: ${task.date}</div>
+        </div>
+    `
+    contentTasks.appendChild(taskTemplate)
+
+}
+
+function getTasksByUser() {
+
+    const auth = localStorage.getItem('auth')
+
+    fetch('http://localhost:3000/task?user_id=' + auth, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(response => {
+        return response.json()
+    }).then(data => {
+
+        contentTasks.innerHTML = ''
+        data.data.forEach(element => {
+            renderTask(element)
+        });
+    })
+}
+
+formCreateTask.addEventListener('submit', (e) => {
+    e.preventDefault()
+    const auth = localStorage.getItem('auth')
+
+    console.log(auth)
+    const data = {
+        title: document.getElementById('input-task-titulo').value,
+        date: document.getElementById('input-task-data').value,
+        userId: auth
+    }
+
+    fetch('http://localhost:3000/task', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }).then(response => {
+        modal.style.display = 'none'
+        formCreateTask.reset()
+        getTasksByUser()
+        console.log(response)
+    })
+})
+
 
 formCadastro.addEventListener('submit', (e) => {
     e.preventDefault()
@@ -76,7 +159,7 @@ formLogin.addEventListener('submit', (e) => {
         return response.json()
     }).then(dados => {
         alert('Seja bem-vindo, ' + dados.user.name)
-        localStorage.setItem('auth', dados.id)
+        localStorage.setItem('auth', dados.user.id)
         formLogin.reset()
         initPage()
     }).catch(erro => {

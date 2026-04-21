@@ -148,7 +148,28 @@ body>div {
 
 .content-tasks {
     display: none;
-    color: #ffffff;
+    flex-direction: column;
+    gap: 5px;
+
+}
+
+.task-item {
+    padding: var(--space-sm);
+    border-radius: 8px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #c3c3c3;
+}
+
+.task-title {
+    display: flex;
+
+}
+
+.header-form-task {
+    display: flex;
+    justify-content: space-between;
 }
 
 .header-tasks {
